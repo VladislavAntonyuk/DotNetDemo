@@ -1,24 +1,37 @@
-public class DataSlice {
-public string DataLabel { get; } public float DataValue { get; }
-public DataSlice(string dataLabel, float {
-DataLabel = dataLabel;
-DataValue = dataValue; }
+public class PrimaryCtor
+{
+    public string DataLabel { get; }
+    public float DataValue { get; }
+    public PrimaryCtor(string dataLabel, float dataValue)
+    {
+        DataLabel = dataLabel;
+        DataValue = dataValue;
+    }
 }
 
 
 // private fields
-public class DataSlice(string dataLabel, flo {
-... }
+public class PrimaryCtor1(string dataLabel, float dataValue)
+{
+}
 
 
 // access public properties
-public class DataSlice(string dataLabel, flo {
-public string DataLabel { get => dataLab
-public float DataValue { get => dataValu }
+public class PrimaryCtor2(string dataLabel, float dataValue)
+{
+    public string DataLabel => dataLabel;
 
+    public float DataValue => dataValue;
+}
 
+public class PrimaryCtor3(string dataLabel, float dataValue)
+{
+    public string DataLabel => dataLabel;
 
-You can also add additional constructors, provided they call the primary constructor:
-public class DataSlice(string dataLabel, flo {
-public string DataLabel { get => dataLab public float DataValue { get => dataValu
-public DataSlice(string dataLabel) : thi }
+    public float DataValue => dataValue;
+
+    public PrimaryCtor3(string dataLabel) : this(dataLabel, 10)
+    {
+
+    }
+}

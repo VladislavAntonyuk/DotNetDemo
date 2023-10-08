@@ -1,15 +1,21 @@
+public class CollectionExpressions
+{
+    public CollectionExpressions()
+    {
+        int[] nums1 = { 1, 2, 3 };
+        Console.WriteLine(string.Join(',', nums1));
+        int[] nums2 = [ 1, 2, 3 ];
+        Console.WriteLine(string.Join(',', nums2));
 
-int[] nums = { 1, 2, 3 };
-It’s easy to shift over to collection literal syntax:
-int[] nums = [ 1, 2, 3 ];
+        List<int> nums3 = [ 1, 2, 3 ];
+        Console.WriteLine(string.Join(',', nums3));
+        nums3.Add(4);
+        Console.WriteLine(string.Join(',', nums3));
+        Span<int> span = [ 1, 2, 3 ];
 
-List<int> nums = [ 1, 2, 3 ];
-// Couldn't do this with an array...
-nums.Add(4);
-Or try something more exotic, like a Span<T> , no stackalloc required:
-Span<int> span = [ 1, 2, 3 ];
-
-
-int[] numsA = [ 1, 2, 3 ]; 
-int[] numsB = [ 11, 12, 13 ];
-int[] numsCombined = [ ..numsA, 7, 8, ..nums // Now numsCombined = { 1, 2, 3, 7, 8, 11, 1
+        int[] numsA = [ 1, 2, 3 ]; 
+        int[] numsB = [ 11, 12, 13 ];
+        int[] numsCombined = [ ..numsA, 7, 8, ..numsB];
+        Console.WriteLine(string.Join(',', numsCombined));
+    }
+}

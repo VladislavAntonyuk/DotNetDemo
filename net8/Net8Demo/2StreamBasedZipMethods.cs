@@ -1,13 +1,13 @@
-namespace System.IO.Compression;
+using System.Diagnostics;
+using System.IO.Compression;
+using System.Text;
 
-public static partial class ZipFile
+public class StreamZipDemo
 {
-    public static void CreateFromDirectory(string sourceDirectoryName, Stream destination);
-    public static void CreateFromDirectory(string sourceDirectoryName, Stream destination, CompressionLevel compressionLevel, bool includeBaseDirectory);
-    public static void CreateFromDirectory(string sourceDirectoryName, Stream destination, CompressionLevel compressionLevel, bool includeBaseDirectory, Encoding? entryNameEncoding);
-
-    public static void ExtractToDirectory(Stream source, string destinationDirectoryName) { }
-    public static void ExtractToDirectory(Stream source, string destinationDirectoryName, bool overwriteFiles) { }
-    public static void ExtractToDirectory(Stream source, string destinationDirectoryName, Encoding? entryNameEncoding) { }
-    public static void ExtractToDirectory(Stream source, string destinationDirectoryName, Encoding? entryNameEncoding, bool overwriteFiles) { }
+    public StreamZipDemo()
+    {
+        using var stream = new MemoryStream();
+        ZipFile.CreateFromDirectory(Environment.CurrentDirectory, stream, CompressionLevel.Fastest, true, Encoding.Default);
+        ZipFile.ExtractToDirectory(stream, Environment.CurrentDirectory, Encoding.Default, true);
+    }
 }

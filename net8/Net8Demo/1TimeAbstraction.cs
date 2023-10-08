@@ -1,29 +1,49 @@
-// Get system time.
-DateTimeOffset utcNow = TimeProvider.System.GetUtcNow();
-DateTimeOffset localNow = TimeProvider.System.GetLocalNow();
-
-// Create a time provider that works with a
-// time zone that's different than the local time zone.
-private class ZonedTimeProvider : TimeProvider
+public class DiscountService
 {
-    private TimeZoneInfo _zoneInfo;
-
-    public ZonedTimeProvider(TimeZoneInfo zoneInfo) : base()
+    public double CalculateDiscount()
     {
-        _zoneInfo = zoneInfo ?? TimeZoneInfo.Local;
+        var now = DateTime.UtcNow;
+
+        return now.DayOfWeek switch
+        {
+            DayOfWeek.Monday => 1,
+            DayOfWeek.Tuesday => 2,
+            DayOfWeek.Wednesday => 3,
+            DayOfWeek.Thursday => 4,
+            DayOfWeek.Friday => 5,
+            DayOfWeek.Saturday => 6,
+            DayOfWeek.Sunday => 7,
+            _ => 0
+        };
     }
-
-    public override TimeZoneInfo LocalTimeZone => _zoneInfo;
-
-    public static TimeProvider FromLocalTimeZone(TimeZoneInfo zoneInfo) =>
-        new ZonedTimeProvider(zoneInfo);
 }
 
-// Create a timer using a time provider.
-ITimer timer = timeProvider.CreateTimer(callBack, state, delay, Timeout.InfiniteTimeSpan);
+public class TimeAbstraction2
+{
+    private readonly TimeProvider _timeProvider;
 
-// Measure a period using the system time provider.
-long providerTimestamp1 = TimeProvider.System.GetTimestamp();
-long providerTimestamp2 = TimeProvider.System.GetTimestamp();
+    public TimeAbstraction2(TimeProvider timeProvider)
+    {
+        _timeProvider = timeProvider;
+    }
 
-var period = GetElapsedTime(providerTimestamp1, providerTimestamp2);
+    public double CalculateDiscount()
+    {
+        var now = _timeProvider.GetUtcNow();
+
+        return now.DayOfWeek switch
+        {
+            DayOfWeek.Monday => 1,
+            DayOfWeek.Tuesday => 2,
+            DayOfWeek.Wednesday => 3,
+            DayOfWeek.Thursday => 4,
+            DayOfWeek.Friday => 5,
+            DayOfWeek.Saturday => 6,
+            DayOfWeek.Sunday => 7,
+            _ => 0
+        };
+    }
+}
+
+// dotnet add package Microsoft.Extensions.TimeProvider.Testing --version 8.0.0-rc.1.23453.1
+// Microsoft.Extensions.Time.Testing.FakeTimeProvider

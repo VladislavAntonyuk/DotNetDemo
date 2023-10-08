@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "Net8Web": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "https://localhost:54448/swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:54448;http://localhost:54449"
+    }
+  }
+}

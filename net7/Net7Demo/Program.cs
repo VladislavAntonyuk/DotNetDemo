@@ -84,4 +84,5 @@ Console.ReadLine();
 
 // Extended nameof scope
 [MyAttribute(nameof(parameter))]
-void M(int parameter) { }
+void M(int parameter)
+{ }

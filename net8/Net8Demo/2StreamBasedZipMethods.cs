@@ -1,4 +1,5 @@
-using System.Diagnostics;
+namespace Net8Demo;
+
 using System.IO.Compression;
 using System.Text;
 

@@ -1,4 +1,6 @@
-﻿var timeAbstraction = new TimeAbstraction2(TimeProvider.System);
+﻿using Net8Demo;
+
+var timeAbstraction = new TimeAbstraction2(TimeProvider.System);
 Console.WriteLine("TimeAbstraction");
 Console.WriteLine(timeAbstraction.CalculateDiscount());
 Console.ReadLine();

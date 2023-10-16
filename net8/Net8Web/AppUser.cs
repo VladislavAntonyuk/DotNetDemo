@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-public class AppUser:IdentityUser
-{
+namespace Net8Web;
 
-}
+public class AppUser : IdentityUser;

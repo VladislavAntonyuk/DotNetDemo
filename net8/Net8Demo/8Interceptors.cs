@@ -1,26 +1,27 @@
 ﻿using System.Runtime.CompilerServices;
 
-public class InterceptorsDemo
+namespace Net8Demo
 {
-	public InterceptorsDemo()
+    public class InterceptorsDemo
     {
-        Console.WriteLine("Demo");
+        public InterceptorsDemo()
+        {
+            Console.WriteLine("Demo");
+        }
+    }
+
+    static class Interception
+    {
+        [InterceptsLocation(@"C:\Projects\DotNetDemo\net8\Net8Demo\8Interceptors.cs", line: 9, column: 21)]
+        public static void WriteLine(string? value)
+        {
+            Console.WriteLine($"Intercepted '{value}'");
+        }
     }
 }
 
 namespace System.Runtime.CompilerServices
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
-    sealed class InterceptsLocationAttribute(string filePath, int line, int column) : Attribute
-    {
-    }
-}
-
-static class Interception
-{
-    [InterceptsLocation(@"C:\Projects\DotNetDemo\net8\Net8Demo\8Interceptors.cs", line: 7, column: 17)]
-    public static void WriteLine(string? value)
-    {
-        Console.WriteLine($"Intercepted '{value}'");
-    }
+    sealed class InterceptsLocationAttribute(string filePath, int line, int column) : Attribute;
 }

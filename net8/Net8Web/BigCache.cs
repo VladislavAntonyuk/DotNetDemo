@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 
+namespace Net8Web;
+
 public class BigCache : IMemoryCache
 {
     public void Dispose()

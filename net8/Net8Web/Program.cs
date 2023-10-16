@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.OpenApi.Models;
+using Net8Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -80,3 +81,5 @@ app.MapGet("/efcore", (AppDbContext dbContext) =>
 
 app.MapGroup("/account").MapIdentityApi<AppUser>();
 app.Run();
+
+// demo@demo.com P@ssw0rd

@@ -1,3 +1,5 @@
+namespace Net8Demo;
+
 public class DiscountService
 {
     public double CalculateDiscount()
@@ -18,18 +20,11 @@ public class DiscountService
     }
 }
 
-public class TimeAbstraction2
+public class TimeAbstraction2(TimeProvider timeProvider)
 {
-    private readonly TimeProvider _timeProvider;
-
-    public TimeAbstraction2(TimeProvider timeProvider)
-    {
-        _timeProvider = timeProvider;
-    }
-
     public double CalculateDiscount()
     {
-        var now = _timeProvider.GetUtcNow();
+        var now = timeProvider.GetUtcNow();
 
         return now.DayOfWeek switch
         {

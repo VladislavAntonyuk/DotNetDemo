@@ -1,3 +1,5 @@
+namespace Net8Demo;
+
 public class PrimaryCtor
 {
     public string DataLabel { get; }

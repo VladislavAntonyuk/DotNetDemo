@@ -2,7 +2,7 @@
 using System.Numerics;
 // Generic math
 
-internal interface IGenericMath 
+internal interface IGenericMath
 {
     public static TResult Sum<T, TResult>(IEnumerable<T> values)
             where T : INumber<T>

@@ -1,0 +1,13 @@
+<div class="border rounded p-3 bg-light">
+    Rendered at <strong>@renderedAt.ToString("HH:mm:ss")</strong> after a slow "database" call.
+</div>
+
+@code {
+    DateTime renderedAt;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(1000);
+        renderedAt = DateTime.Now;
+    }
+}

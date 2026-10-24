@@ -1,0 +1,11 @@
+/* ChatPage is a full-viewport shell (100dvh); embed it in the layout instead */
+.chat-host {
+    height: calc(100dvh - 12rem);
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.chat-host ::deep .sc-ai-chat-page {
+    height: 100%;
+}

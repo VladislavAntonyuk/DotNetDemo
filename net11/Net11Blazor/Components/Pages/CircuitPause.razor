@@ -1,0 +1,34 @@
+@page "/circuit"
+@rendermode InteractiveServer
+@inject CircuitAccessor CircuitAccessor
+
+<PageTitle>Circuit pause</PageTitle>
+
+<h1>Circuit pause</h1>
+<p>
+    Every interactive tab keeps a circuit with component state in server memory.
+    The server can ask the client to pause the circuit (for example before a planned restart):
+    server memory is released, and when the user resumes, a new circuit restores the state marked with <code>[PersistentState]</code>.
+    Note the circuit id changes after resuming.
+</p>
+
+<p>Circuit: <code>@CircuitAccessor.Circuit?.Id</code></p>
+<p>Counter (persisted with [PersistentState], survives the pause): <strong>@Counter</strong></p>
+
+<button class="btn btn-primary" @onclick="() => Counter++">Increment</button>
+<button class="btn btn-warning" @onclick="PauseAsync">Pause circuit from the server</button>
+
+<p class="mt-3 text-secondary">@status</p>
+
+@code {
+    [PersistentState]
+    public int Counter { get; set; }
+
+    string? status;
+
+    async Task PauseAsync()
+    {
+        status = "Pause requested...";
+        await CircuitAccessor.Circuit!.RequestCircuitPauseAsync(CancellationToken.None);
+    }
+}

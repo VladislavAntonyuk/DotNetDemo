@@ -1,0 +1,30 @@
+@page "/chat"
+@rendermode InteractiveServer
+@using Microsoft.AspNetCore.Components.AI
+@using Microsoft.Extensions.AI
+@inject IChatClient ChatClient
+@implements IDisposable
+
+<PageTitle>Blazor AI</PageTitle>
+
+<h1>Blazor AI components</h1>
+<p>Experimental <code>Microsoft.AspNetCore.Components.AI</code>: <code>ChatPage</code> streams an <code>IChatClient</code> response as typed content blocks.</p>
+
+<div class="chat-host">
+    <ChatPage Agent="agent" Placeholder="Ask what is new in .NET 11...">
+        <WelcomeContent>
+            <p class="text-secondary">The demo uses an offline chat client - plug in any IChatClient for a real model.</p>
+        </WelcomeContent>
+    </ChatPage>
+</div>
+
+@code {
+    UIAgent agent = default!;
+
+    protected override void OnInitialized()
+    {
+        agent = new UIAgent(ChatClient);
+    }
+
+    public void Dispose() => agent.Dispose();
+}

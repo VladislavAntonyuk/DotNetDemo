@@ -1,0 +1,59 @@
+@Net11Web_HostAddress = http://localhost:5214
+
+### Async validation + localized messages (400 with Ukrainian messages)
+POST {{Net11Web_HostAddress}}/users
+Content-Type: application/json
+
+{ "email": "taken@demo.com", "age": 10 }
+
+### Valid request (201)
+POST {{Net11Web_HostAddress}}/users
+Content-Type: application/json
+
+{ "email": "new@demo.com", "age": 30 }
+
+### [ShortCircuit] - no auth or other middleware after routing
+GET {{Net11Web_HostAddress}}/healthz
+
+### OpenAPI 3.2 document ("openapi": "3.2.0", query operation, itemSchema, anyOf, format: binary, deprecated)
+GET {{Net11Web_HostAddress}}/openapi/v1.json
+
+### HTTP QUERY with a request body
+QUERY {{Net11Web_HostAddress}}/products/search
+Content-Type: application/json
+
+{ "maxPrice": 1000, "categories": ["Electronics", "Furniture"] }
+
+### C# 15 union response - declined
+POST {{Net11Web_HostAddress}}/checkout
+Content-Type: application/json
+
+{ "amount": 5000 }
+
+### C# 15 union response - receipt
+POST {{Net11Web_HostAddress}}/checkout
+Content-Type: application/json
+
+{ "amount": 50 }
+
+### Typed Server-Sent Events
+GET {{Net11Web_HostAddress}}/orders/live
+
+### Zstandard response compression
+GET {{Net11Web_HostAddress}}/v1/products
+Accept-Encoding: zstd
+
+### SignalR: token refresh without reconnect + client cancellation reaching the server
+GET {{Net11Web_HostAddress}}/signalr-demo
+
+### EF Core 11: complex type mapped to JSON in a TPT hierarchy
+GET {{Net11Web_HostAddress}}/efcore/animals
+
+### EF Core 11: split query without the redundant JOIN
+GET {{Net11Web_HostAddress}}/efcore/split-query
+
+### EF Core 11: no-op CAST removed for a value-converted column
+GET {{Net11Web_HostAddress}}/efcore/no-op-cast
+
+### EF Core 11: MaxByAsync and FullJoin translation
+GET {{Net11Web_HostAddress}}/efcore/linq

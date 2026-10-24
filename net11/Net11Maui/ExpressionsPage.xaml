@@ -1,0 +1,19 @@
+<ContentPage x:Class="Net11Maui.ExpressionsPage"
+             xmlns:local="clr-namespace:Net11Maui"
+             x:DataType="local:ProductViewModel"
+             Title="C# expressions in XAML">
+
+    <!-- .NET 11 preview: C# expressions instead of converters and StringFormat -->
+    <VerticalStackLayout Padding="30" Spacing="12">
+        <Label Text="{ProductName}" FontAttributes="Bold" FontSize="18" />
+        <Label Text="{$'{Price:C2}'}" />
+        <Label Text="{$'{Quantity} x {ProductName}'}" />
+        <Label Text="{$'Total: {Price * Quantity:C2}'}" />
+        <Label Text="In stock" IsVisible="{IsActive}" TextColor="#22C55E" />
+        <Label Text="Out of stock" IsVisible="{!IsActive}" TextColor="#9CA3AF" />
+
+        <Stepper Value="{Quantity}" Minimum="1" Maximum="10" />
+        <Switch IsToggled="{IsActive}" />
+    </VerticalStackLayout>
+
+</ContentPage>

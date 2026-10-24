@@ -1,0 +1,29 @@
+﻿<ContentPage x:Class="Net11Maui.MainPage" Title=".NET MAUI 11">
+
+    <!-- .NET MAUI 11: implicit XAML namespaces - no xmlns declarations needed -->
+
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="20">
+            <!-- CoreCLR is now the default runtime on every platform -->
+            <Label x:Name="RuntimeLabel" Style="{StaticResource SubHeadline}" />
+
+            <!-- BoxView.Fill accepts any Brush -->
+            <BoxView HeightRequest="120" CornerRadius="16">
+                <BoxView.Fill>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#4F46E5" Offset="0.0" />
+                        <GradientStop Color="#EC4899" Offset="1.0" />
+                    </LinearGradientBrush>
+                </BoxView.Fill>
+                <BoxView.GestureRecognizers>
+                    <!-- Built-in long press -->
+                    <LongPressGestureRecognizer LongPressed="OnLongPressed" />
+                </BoxView.GestureRecognizers>
+            </BoxView>
+
+            <Label x:Name="LongPressLabel" Text="Long-press the gradient" HorizontalOptions="Center" />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

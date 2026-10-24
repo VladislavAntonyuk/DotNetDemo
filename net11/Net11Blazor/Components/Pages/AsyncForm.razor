@@ -1,0 +1,38 @@
+<EditForm EditContext="editContext" OnValidSubmit="Register" class="col-md-6">
+    <DataAnnotationsValidator />
+
+    <div class="mb-3">
+        <label class="form-label"><DisplayName For="() => model.Username" /></label>
+        <InputText @bind-Value="model.Username" class="form-control" placeholder="Try 'admin' or 'olena'" />
+
+        @if (editContext.IsValidationPending(() => model.Username))
+        {
+            <div class="text-secondary"><span class="spinner-border spinner-border-sm"></span> Checking availability...</div>
+        }
+        <ValidationMessage For="() => model.Username" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register</button>
+    @if (registered)
+    {
+        <span class="ms-3 text-success">Registered @model.Username</span>
+    }
+</EditForm>
+
+@code {
+    readonly RegistrationModel model = new();
+    EditContext editContext = default!;
+    bool registered;
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(model);
+        // Re-render when the async check completes so the pending indicator disappears
+        editContext.OnValidationStateChanged += (_, _) => InvokeAsync(StateHasChanged);
+    }
+
+    void Register()
+    {
+        registered = true;
+    }
+}

@@ -1,0 +1,22 @@
+﻿@page "/"
+
+<PageTitle>Blazor 11</PageTitle>
+
+<h1>Blazor 11 demos</h1>
+
+<EnvironmentView Include="Development">
+    <div class="alert alert-info">&lt;EnvironmentView&gt;: this banner renders only in Development.</div>
+</EnvironmentView>
+
+<ul>
+    <li><a href="forms">Static SSR client-side validation, TempData and async validation</a></li>
+    <li><a href="virtualize">Virtualize with variable height, InitialItemIndex and ScrollToItemAsync</a></li>
+    <li><a href="circuit">Circuit pause</a></li>
+    <li><a href="chat">Blazor AI components</a></li>
+</ul>
+
+<h2>&lt;CacheView&gt; in Static SSR</h2>
+<p>The block below is rendered once and cached for 30 seconds. Reload the page: the time does not change until the cache expires.</p>
+<CacheView ExpiresAfter="TimeSpan.FromSeconds(30)">
+    <ExpensiveFragment />
+</CacheView>

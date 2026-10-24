@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="Net11Blazor/Net11Blazor.csproj" />
+  <Project Path="Net11Demo/Net11Demo.csproj" />
+  <Project Path="Net11Maui.Linux/Net11Maui.Linux.csproj" />
+  <Project Path="Net11Maui/Net11Maui.csproj" />
+  <Project Path="Net11Mcp/Net11Mcp.csproj" />
+  <Project Path="Net11Web/Net11Web.csproj" />
+</Solution>

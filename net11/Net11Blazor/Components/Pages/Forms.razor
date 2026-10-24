@@ -1,0 +1,60 @@
+@page "/forms"
+@inject NavigationManager Navigation
+
+<PageTitle>Static SSR forms</PageTitle>
+
+<h1>Static SSR form</h1>
+<p>
+    No interactivity on this page. <code>&lt;DataAnnotationsValidator /&gt;</code> renders the rules into the HTML,
+    so <code>blazor.web.js</code> validates fields in the browser before the form is posted.
+</p>
+
+@if (StatusMessage is not null)
+{
+    <div class="alert alert-success">@StatusMessage</div>
+}
+
+<EditForm Model="Contact!" FormName="contact" OnValidSubmit="Save" class="col-md-6">
+    <DataAnnotationsValidator />
+
+    <div class="mb-3">
+        <label class="form-label"><DisplayName For="() => Contact!.Name" /></label>
+        <InputText @bind-Value="Contact!.Name" class="form-control" />
+        <ValidationMessage For="() => Contact!.Name" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label"><DisplayName For="() => Contact!.Email" /></label>
+        <InputText @bind-Value="Contact!.Email" class="form-control" />
+        <ValidationMessage For="() => Contact!.Email" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label"><DisplayName For="() => Contact!.Age" /></label>
+        <InputNumber @bind-Value="Contact!.Age" class="form-control" />
+        <ValidationMessage For="() => Contact!.Age" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</EditForm>
+
+<h2 class="mt-5">Async validation in an interactive EditForm</h2>
+<AsyncForm @rendermode="InteractiveServer" />
+
+@code {
+    [SupplyParameterFromForm]
+    ContactModel? Contact { get; set; }
+
+    // Read once after the redirect, then removed automatically
+    [SupplyParameterFromTempData]
+    public string? StatusMessage { get; set; }
+
+    protected override void OnInitialized() => Contact ??= new();
+
+    void Save()
+    {
+        // POST-Redirect-GET with a flash message
+        StatusMessage = $"Saved contact {Contact!.Name}";
+        Navigation.NavigateTo("forms");
+    }
+}

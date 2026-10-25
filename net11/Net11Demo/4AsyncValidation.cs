@@ -1,3 +1,4 @@
+#if NET11_0_OR_GREATER
 using System.ComponentModel.DataAnnotations;
 
 namespace Net11Demo;
@@ -61,3 +62,4 @@ public sealed class ValidVatNumberAttribute : AsyncValidationAttribute
             : new ValidationResult($"VAT number '{value}' not found in the registry", [validationContext.MemberName!]);
     }
 }
+#endif

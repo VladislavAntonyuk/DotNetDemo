@@ -1,3 +1,4 @@
+#if NET11_0_OR_GREATER
 using System.Diagnostics;
 
 namespace Net11Demo;
@@ -57,3 +58,4 @@ public class ProcessApiDemo
         Console.WriteLine($"Resumed and exited with code {status.ExitCode}");
     }
 }
+#endif

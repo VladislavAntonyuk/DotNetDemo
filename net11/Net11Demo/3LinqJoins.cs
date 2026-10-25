@@ -1,3 +1,4 @@
+#if NET11_0_OR_GREATER
 namespace Net11Demo;
 
 public class LinqJoins
@@ -41,3 +42,4 @@ public class LinqJoins
         }
     }
 }
+#endif

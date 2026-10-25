@@ -4,6 +4,8 @@ Console.WriteLine("Runtime Async");
 await new RuntimeAsyncDemo().Run();
 Console.ReadLine();
 
+#if NET11_0_OR_GREATER
+
 Console.WriteLine("Process API");
 await new ProcessApiDemo().Run();
 Console.ReadLine();
@@ -19,6 +21,7 @@ Console.ReadLine();
 Console.WriteLine("Libraries");
 await new LibrariesDemo().Run();
 Console.ReadLine();
+#endif
 
 Console.WriteLine("Collection Expression Arguments");
 new CollectionExpressionArguments();

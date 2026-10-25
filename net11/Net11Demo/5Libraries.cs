@@ -1,3 +1,4 @@
+#if NET11_0_OR_GREATER
 using System.IO.Compression;
 using System.Text;
 using System.Text.Json;
@@ -78,3 +79,4 @@ public class EventData
 
     public Dictionary<string, string> Tags { get; set; } = [];
 }
+#endif
